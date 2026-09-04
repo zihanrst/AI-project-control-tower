@@ -1,0 +1,12 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import demoData from "../data/mmpe-demo.json" with { type: "json" };
+import { analyseResource, detectSustainedPressure } from "../lib/resource-engine.ts";
+import { createCapacityRisk } from "../lib/risk-engine.ts";
+import { generateScenarios } from "../lib/scenario-engine.ts";
+import type { DemoData } from "../lib/types.ts";
+const data=demoData as DemoData;
+test("calculates period metrics",()=>{const p1=analyseResource(data.periods[0],2);const p3=analyseResource(data.periods[2],2);assert.deepEqual([p1.totalAllocated,p1.utilisation,p1.spareCapacity],[24,1,0]);assert.deepEqual([p3.totalAllocated,p3.utilisation,p3.spareCapacity],[28,1,0])});
+test("detects pressure before future boundary",()=>{assert.equal(detectSustainedPressure({metadata:data.metadata,periods:data.periods.slice(0,2)},2),true)});
+test("risk evidence excludes future outcome",()=>{const risk=createCapacityRisk(analyseResource(data.periods[0],2),2);assert.equal(risk?.title,"Designer Capacity Pressure");assert.equal(risk?.evidence.some(item=>item.includes("Period 3")),false)});
+test("generates three scenarios",()=>{const scenarios=generateScenarios(24,4,2);assert.equal(scenarios.find(item=>item.recommended)?.resultingCapacity,28);assert.equal(scenarios.length,3)});

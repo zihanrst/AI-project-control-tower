@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "name": "Multi-project engineering simulation",
+    "projects": ["Albania", "Croatia", "Finland", "Honduras"],
+    "resource": "Designers",
+    "recruitmentLeadTimePeriods": 2
+  },
+  "periods": [
+    { "id": 1, "capacity": 24, "allocations": { "Albania": 4, "Croatia": 6, "Finland": 8, "Honduras": 6 } },
+    { "id": 2, "capacity": 24, "allocations": { "Albania": 6, "Croatia": 5, "Finland": 8, "Honduras": 5 } },
+    { "id": 3, "capacity": 28, "allocations": { "Albania": 7, "Croatia": 8, "Finland": 6, "Honduras": 7 } }
+  ],
+  "historicalDecision": {
+    "period": 1,
+    "action": "Recruit",
+    "quantity": 4,
+    "resource": "Designers",
+    "effectivePeriod": 3
+  }
+}
