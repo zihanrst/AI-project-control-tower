@@ -19,7 +19,7 @@ export function AiPriorityCard({ risk, expanded, onToggleEvidence, onAnalyse }: 
       <h2>{risk.title}</h2>
       <p>Designer capacity is fully utilised across four concurrent projects. With no buffer and a two-period recruitment lead time, additional workload or disruption could create downstream constraints.</p>
       <div className="fact-row">
-        <span><b>Historical fact</b> 24 of 24 allocated</span>
+        <span><b>Historical fact</b> {risk.evidence[0]}</span>
         <span><b>AI assessment</b> Capacity exposure</span>
       </div>
       <div className="button-row">
