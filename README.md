@@ -4,7 +4,7 @@ An explainable decision-support MVP that detects shared-resource pressure across
 
 ## Live Demo
 
-Vercel URL: _coming soon_
+[Open the live production demo](https://ai-project-control-tower.vercel.app)
 
 ## Problem
 
