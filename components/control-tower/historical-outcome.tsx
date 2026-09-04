@@ -12,7 +12,7 @@ export function HistoricalOutcome({ canReveal, revealed, outcome, onReveal }: Hi
   if (!revealed) {
     return (
       <section className="outcome-gate">
-        <div><span className="source-label outcome">Future data boundary</span><h2>Validate against the historical outcome</h2><p>Period 3 remains hidden until the recommendation has been analysed.</p></div>
+        <div><span className="source-label outcome">Future data boundary</span><h2>Validate against the historical outcome</h2><p>Period 3 remains locked until the historical outcome is revealed.</p></div>
         <button type="button" className="reveal-button" disabled={!canReveal} onClick={onReveal}>
           {canReveal ? <Eye size={17} /> : <LockKeyhole size={17} />} Reveal historical outcome
         </button>

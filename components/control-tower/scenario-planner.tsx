@@ -23,6 +23,7 @@ export function ScenarioPlanner({ scenarios, riskStatus, onApprove }: ScenarioPl
         {scenarios.map((scenario) => (
           <article className={`scenario-card${scenario.recommended ? " recommended" : ""}`} key={scenario.id}>
             {scenario.recommended && <span className="recommended-badge"><CheckCircle2 size={14} /> Recommended</span>}
+            <span className="source-label assumption">Scenario assumption</span>
             <h3>{scenario.title}</h3>
             <p>{scenario.description}</p>
             <div className="scenario-capacity"><strong>{scenario.resultingCapacity}</strong><span>resulting capacity</span></div>
@@ -40,8 +41,9 @@ export function ScenarioPlanner({ scenarios, riskStatus, onApprove }: ScenarioPl
       <div className="recommendation-bar">
         <div>
           <span className="source-label assessment">AI assessment</span>
-          <strong>Proactive expansion provides the strongest capacity buffer.</strong>
-          <p>Based only on Period 1 conditions and the known two-period recruitment lead time.</p>
+          <strong>Why this option is recommended</strong>
+          <p className="decision-rationale">100% utilisation + no spare buffer + shared resource competition + two-period recruitment lead time → proactive capacity expansion offers the lowest residual capacity risk.</p>
+          <p>Rationale uses only information available at Period 1.</p>
         </div>
         {riskStatus === "Open" ? (
           <button type="button" className="primary-button" onClick={onApprove}><CheckCircle2 size={17} /> Approve recommendation</button>

@@ -42,7 +42,16 @@ export function ControlTowerDashboard({ data }: { data: DemoData }) {
       <div className="dashboard-shell">
         <section className="page-heading">
           <div><p className="eyebrow">Portfolio command view</p><h1>Multi-project resource risk<br />&amp; decision support</h1><p>Proactive analysis for shared specialist capacity across four concurrent engineering projects.</p></div>
-          <PeriodSelector periods={data.periods.map((item) => item.id)} selected={selectedPeriod} onChange={setSelectedPeriod} />
+          <PeriodSelector
+            periods={data.periods.map((item) => item.id)}
+            selected={selectedPeriod}
+            lockedPeriods={outcomeRevealed ? [] : [data.historicalDecision.effectivePeriod]}
+            onChange={setSelectedPeriod}
+          />
+        </section>
+
+        <section className="workflow-strip" aria-label="Agent decision workflow">
+          <span>Observe</span><i>→</i><span>Detect</span><i>→</i><span>Assess</span><i>→</i><span>Recommend</span><i>→</i><span>Human Approve</span><i>→</i><span>Track</span>
         </section>
 
         <PortfolioSummary projectCount={data.metadata.projects.length} capacity={period.capacity} utilisation={signal.utilisation} riskCount={risk ? 1 : 0} />
@@ -54,7 +63,7 @@ export function ControlTowerDashboard({ data }: { data: DemoData }) {
 
         {analysisOpen && <ScenarioPlanner scenarios={scenarios} riskStatus={riskStatus} onApprove={() => setRiskStatus("Mitigating")} />}
         <HistoricalOutcome canReveal={analysisOpen} revealed={outcomeRevealed} outcome={outcome} onReveal={() => setOutcomeRevealed(true)} />
-        <footer><span>AI Project Control Tower · MVP v0.1</span><span>Deterministic analysis · Human-controlled decisions</span></footer>
+        <footer><span>AI Project Control Tower · MVP v0.1.1</span><span>Deterministic analysis · Human-controlled decisions</span></footer>
       </div>
     </main>
   );
