@@ -203,13 +203,6 @@ Original course files and teaching materials are not redistributed. Only the rec
 
 这是一个面向多项目环境的 AI 决策支持 MVP。与传统 Dashboard 主要回答“发生了什么”不同，Control Tower 的目标是在**每个 reporting cycle** 读取最新项目状态，持续更新已有风险、发现新风险、比较干预方案，并向管理者提供可解释的 recommendation。
 
-### 当前 MVP
-
-四个并行项目共享 24 名 Designer。Period 1 出现：
-
-> **24/24 allocation · 100% utilisation · 0 spare buffer · 2-period recruitment lead time**
-
-系统识别 **Designer Capacity Pressure**，比较 Maintain / Reallocate / Recruit +4 三种方案，并基于当时可获得的信息推荐主动扩充 capacity，同时保留人工审批。
 
 ### 两层核心设计
 
@@ -219,14 +212,3 @@ Original course files and teaching materials are not redistributed. Only the rec
 
 这才是 Control Tower 在真实企业中的核心使用方式。
 
-**Evaluation Layer**
-
-当前 MVP 尚未部署在真实企业，因此使用 **point-in-time historical backtesting** 进行验证。
-
-Agent 在 Period 1 做判断时严格禁止使用未来 outcome；完成 recommendation 后才揭示：
-
-> **24/24 → Recruit +4 → 28/28**
-
-后续新增 capacity 被全部使用，为 recommendation 提供历史验证证据，但项目不会将其夸大为因果证明。
-
-**核心原则：不是为了使用 AI 而使用 AI——需要推理的地方使用 AI，需要精确计算的地方使用 deterministic tools。**
